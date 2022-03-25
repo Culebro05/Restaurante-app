@@ -29,7 +29,7 @@ export default function Navigation(){
                     activeTintColor: '#00a680'
                 }}
                 screenOptions = {({route}) => ({
-                    tarBarIcon: ({color}) => screenOptions(route, color)
+                    tabBarIcon: ({color}) => screenOptions(route, color)
                 })}
             >
                 <Tab.Screen 
