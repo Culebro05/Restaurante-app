@@ -1,8 +1,8 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import Search from "../screens/Search";
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import Search from '../screens/Search'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 export default function SearchStack() {
     return (
@@ -13,5 +13,5 @@ export default function SearchStack() {
                 options={{ title: 'Buscar'}}
             />
        </Stack.Navigator>
-    );
+    )
 }

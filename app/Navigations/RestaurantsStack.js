@@ -1,8 +1,8 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import Restaurants from "../screens/Restaurants";
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import Restaurants from '../screens/Restaurants'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 export default function RestaurantsStack() {
     return (
@@ -13,5 +13,5 @@ export default function RestaurantsStack() {
                 options={{ title: 'Restaurantes'}}
             />
        </Stack.Navigator>
-    );
+    )
 }

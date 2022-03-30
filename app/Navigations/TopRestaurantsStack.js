@@ -1,8 +1,8 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import TopRestaurants from "../screens/TopRestaurants";
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import TopRestaurants from '../screens/TopRestaurants'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 export default function TopRestaurantsStack() {
     return (
@@ -13,5 +13,5 @@ export default function TopRestaurantsStack() {
                 options={{ title: 'Top 5'}}
             />
        </Stack.Navigator>
-    );
+    )
 }
