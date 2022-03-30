@@ -13,5 +13,5 @@ export default function FavoritesStack() {
                 options={{ title: 'Favoritos'}}
             />
        </Stack.Navigator>
-    );
+    )
 }
