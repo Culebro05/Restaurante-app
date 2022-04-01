@@ -1,6 +1,6 @@
-import React from "react"
-import { StyleSheet, View, Text, ActivityIndicador } from "react-native"
-import { Overlay } from "react-native-elements"
+import React from 'react'
+import { StyleSheet, View, Text, ActivityIndicador } from 'react-native'
+import { Overlay } from 'react-native-elements'
 
 export default function Loading(props){
     const {isVisible, text}  = props
