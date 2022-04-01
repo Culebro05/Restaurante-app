@@ -64,7 +64,7 @@ export default function Navigation(){
 
 function screenOptions(route, color){
     let iconName
-    switch(route, name){
+    switch(route.name){
         case 'restaurants':
             iconName='compass-outline'
             break
