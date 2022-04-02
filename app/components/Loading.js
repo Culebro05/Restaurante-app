@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicador } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
 import { Overlay } from 'react-native-elements/dist/overlay/Overlay'
 
-export default function Loading(props){
+export default function Loading (props){
     const {isVisible, text}  = props
     return(
         <Overlay
@@ -12,7 +12,7 @@ export default function Loading(props){
             overlayStyle = {styles.overlay}
         >
             <View>
-                <ActivityIndicador size ='large' color = '#00a680'/>
+                <ActivityIndicator size ='large' color = '#00a680'/>
                 {text && <Text style={styles.text}>{text}</Text>}
             </View>
         </Overlay>
