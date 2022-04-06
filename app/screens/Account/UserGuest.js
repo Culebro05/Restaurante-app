@@ -4,9 +4,9 @@ import { Button } from 'react-native-elements'
 import {useNavigation} from '@react-navigation/native'
 import Login from './Login'
 
+
 export default function UserGuest(){
     const navigation = useNavigation()
-
     return(
         <ScrollView style={StyleSheet.container}>
             <Image
