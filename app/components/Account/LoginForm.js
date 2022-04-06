@@ -37,7 +37,7 @@ export default function LoginForm(props) {
         .then(()=>{
           navigation.navigate('account')
         })
-        .catch((response)=>{
+        .catch(()=>{
           toastRef.current.show({
             type:'error',
             position:'top',
