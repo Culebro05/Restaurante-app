@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { Input, Icon, Button } from 'react-native-elements'
+import {useNavigation} from '@react-navigation/native'
 import {validateEmail} from '../../utils/validation'
 import firebase from 'firebase'
-import {useNavigation} from '@react-navigation/native'
+
 
 
 export default function LoginForm(props) {
@@ -36,12 +37,12 @@ export default function LoginForm(props) {
         .then(()=>{
           navigation.navigate('account')
         })
-        .catch(()=>{
+        .catch((response)=>{
           toastRef.current.show({
             type:'error',
             position:'top',
             text1:'Cuenta',
-            text2:'Las credenciale no son correctas',
+            text2:'Las credenciales no son correctas',
             visibilityTime: 3000,
           });
        })
