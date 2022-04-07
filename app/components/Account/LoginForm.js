@@ -33,7 +33,7 @@ export default function LoginForm(props) {
     }else{
         firebase
         .auth()
-        .createUserWithEmailAndPassword(formData.email, formData.password)
+        .signInWithEmailAndPassword(formData.email, formData.password)
         .then(()=>{
           navigation.navigate('account')
         })
