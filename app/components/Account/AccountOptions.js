@@ -14,7 +14,7 @@ export default function AccountOptions(props) {
     <View>
       {menuOptions.map((menu, index) => (
         <ListItem key={index} bottomDivider onPress={menu.onPress}>
-          <Icon name={menu.icconNameLeft} />
+          <Icon name={menu.iconNameLeft} />
           <ListItem.Content>
             <ListItem.Title>{menu.title}</ListItem.Title>
           </ListItem.Content>
