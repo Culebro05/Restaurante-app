@@ -11,7 +11,7 @@ export default function UserGuest(){
         <ScrollView style={StyleSheet.container}>
             <Image
                 style={styles.stretch}
-                source={require('../../../assets/img/guest.png')}
+                source={require('../../../assets/img/rest.png')}
             />
             <Text style={styles.title}>Ingresa a tu perfil</Text>
             <Text style={styles.description}>
