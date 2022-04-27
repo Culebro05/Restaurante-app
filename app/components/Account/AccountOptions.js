@@ -76,7 +76,7 @@ export default function AccountOptions(props) {
 function generateOptions(selectedComponent) {
   return [
     {
-      title: "Cambiar nombres y apellidos",
+      title: "Cambia nombres y apellidos",
       iconNameLeft: "account-circle",
       onPress: () => selectedComponent("displayName"),
     },
