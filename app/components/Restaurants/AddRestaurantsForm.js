@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import {Alert, Dimensions, ScrollView, StyleSheet, Text, View, ScrollView} from "react-native";
-import { Avatar, Button, Icon, Input, Image } from "react-native-elements";
-import CountryPicker from "react-native-country-picker-modal";
-import { map, size, filter, isEmpty } from "lodash";
+import React, { useState } from "react"
+import {Alert, Dimensions, ScrollView, StyleSheet, Text, View} from "react-native"
+import { Avatar, Button, Icon, Input, Image } from "react-native-elements"
+import CountryPicker from "react-native-country-picker-modal"
+import { map, size, filter, isEmpty } from "lodash"
 
-import { loadImageFromGallery, validateEmail } from "../../utils/helpers";
+import { loadImageFromGallery, validateEmail } from "../../utils/helpers"
 
 const widthScreen = Dimensions.get('window').width
 
@@ -18,50 +18,50 @@ export default function AddRestaurantsForm({toastRef, setLoading, navigation }) 
   const [imagesSelected, setImagesSelected] = useState([]);
 
   const AddRestaurant = async () => {
-    console.log(formData);
-    console.log("Siiii");
+    console.log(formData)
+    console.log("Siiii")
     if (!validForm()) {
-      return;
+      return
     }
-  };
+  }
 
   const validForm = () => {
-    clearErrors();
-    let isValid = true;
+    clearErrors()
+    let isValid = true
 
     if (isEmpty(formData.name)) {
-      setErrorName("Debes ingresar el nombre del restaurante.");
-      isValid = false;
+      setErrorName("Debes ingresar el nombre del restaurante.")
+      isValid = false
     }
 
     if (isEmpty(formData.address)) {
-      setErrorAddress("Debes ingresar la dirección del restaurante.");
-      isValid = false;
+      setErrorAddress("Debes ingresar la dirección del restaurante.")
+      isValid = false
     }
 
     if (!validateEmail(formData.email)) {
-      setErrorEmail("Debes ingresar un email de restaurante válido.");
-      isValid = false;
+      setErrorEmail("Debes ingresar un email de restaurante válido.")
+      isValid = false
     }
 
     if (size(formData.phone) < 10) {
-      setErrorPhone("Debes ingresar un teléfono de restaurante válido.");
-      isValid = false;
+      setErrorPhone("Debes ingresar un teléfono de restaurante válido.")
+      isValid = false
     }
 
     if (isEmpty(formData.description)) {
-      setErrorDescription("Debes ingresar una descripción del restaurante.");
-      isValid = false;
+      setErrorDescription("Debes ingresar una descripción del restaurante.")
+      isValid = false
     }
-  };
+  }
 
   const clearErrors = () => {
-    setErrorName(null);
-    setErrorAddress(null);
-    setErrorEmail(null);
-    setErrorPhone(null);
-    setErrorDescription(null);
-  };
+    setErrorName(null)
+    setErrorAddress(null)
+    setErrorEmail(null)
+    setErrorPhone(null)
+    setErrorDescription(null)
+  }
 
   return (
     <ScrollView style={styles.viewContainer}>
@@ -87,7 +87,7 @@ export default function AddRestaurantsForm({toastRef, setLoading, navigation }) 
         buttonStyle={styles.btnAddRestaurant}
       />
     </ScrollView>
-  );
+  )
 }
 
 function ImageRestaurant({ ImageRestaurant }) {
@@ -102,7 +102,7 @@ function ImageRestaurant({ ImageRestaurant }) {
         }
       />
     </View>
-  );
+  )
 }
 
 function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
@@ -113,7 +113,7 @@ function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
       return
     }
     setImagesSelected([imagesSelected, response.image])
-  };
+  }
 
   const removeImage = (image) => {
     Alert.alert(
@@ -129,13 +129,13 @@ function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
           onPress: () => {
             setImagesSelected(
               filter(imagesSelected, (imageUrl) => imageUrl !== image)
-            );
-          },
-        },
+            )
+          }
+        }
       ],
       { cancelable: false }
-    );
-  };
+    )
+  }
 
   return (
     <ScrollView horizontal style={styles.viewImages}>
@@ -157,11 +157,11 @@ function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
           style={styles.minitureStyle}
           source={{ uri: ImageRestaurant }}
           onPress={() => removeImage(ImageRestaurant)}
-        />;
+        />
       })
       }
     </ScrollView>
-  );
+  )
 }
 
 function FormAdd({ formData, setFormData, errorName, errorDescription, errorPhone, errorEmail, errorAddress}) {
@@ -207,7 +207,7 @@ function FormAdd({ formData, setFormData, errorName, errorDescription, errorPhon
               formData,
               'country': country.cca2,
               'callingCode': country.callingCode[0],
-            });
+            })
             setCountry(country.cca2) 
             setCallingCode(country.callingCode[0])
           }}
