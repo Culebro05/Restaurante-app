@@ -1,22 +1,14 @@
 import React, { useState } from "react";
-import {
-  Alert,
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from "react-native";
+import {Alert, Dimensions, ScrollView, StyleSheet, Text, View, ScrollView} from "react-native";
 import { Avatar, Button, Icon, Input, Image } from "react-native-elements";
 import CountryPicker from "react-native-country-picker-modal";
 import { map, size, filter, isEmpty } from "lodash";
 
-import { loadImageFromGaallery, validateEmail } from "../../utils/helpers";
+import { loadImageFromGallery, validateEmail } from "../../utils/helpers";
 
-const widthScreen = Dimensions.get("window").width;
+const widthScreen = Dimensions.get('window').width
 
-export default function AddRestaurantsForm({loading, setLoading, navigation }) {
+export default function AddRestaurantsForm({toastRef, setLoading, navigation }) {
   const [formData, setFormData] = useState(defaulFormValues());
   const [errorName, setErrorName] = useState(null);
   const [errorAddress, setErrorAddress] = useState(null);
@@ -25,12 +17,12 @@ export default function AddRestaurantsForm({loading, setLoading, navigation }) {
   const [errorDescription, setErrorDescription] = useState(null);
   const [imagesSelected, setImagesSelected] = useState([]);
 
-  const addRestaurant = async () => {
+  const AddRestaurant = async () => {
+    console.log(formData);
+    console.log("Siiii");
     if (!validForm()) {
       return;
     }
-    console.log(formData);
-    console.log("Siiii");
   };
 
   const validForm = () => {
@@ -61,16 +53,6 @@ export default function AddRestaurantsForm({loading, setLoading, navigation }) {
       setErrorDescription("Debes ingresar una descripción del restaurante.");
       isValid = false;
     }
-
-    if (size(imagesSelected) === 0) {
-      toastRef.current.show(
-        "Debes de agregar al menos una imagen al restaurante.",
-        3000
-      );
-      isValid = false;
-    }
-
-    return isValid;
   };
 
   const clearErrors = () => {
@@ -83,7 +65,7 @@ export default function AddRestaurantsForm({loading, setLoading, navigation }) {
 
   return (
     <ScrollView style={styles.viewContainer}>
-      <ImageRestaurant imageRestaurant={imagesSelected} />
+      <ImageRestaurant ImageRestaurant={imagesSelected[0]} />
       <FormAdd
         formData={formData}
         setFormData={setFormData}
@@ -95,27 +77,27 @@ export default function AddRestaurantsForm({loading, setLoading, navigation }) {
       />
       <UploadImage
         toastRef={toastRef}
-        imageSelected={imagesSelected}
+        imagesSelected={imagesSelected}
         setImagesSelected={setImagesSelected}
       />
 
       <Button
         title="Crear restaurante"
-        onPress={addRestaurant}
+        onPress={AddRestaurant}
         buttonStyle={styles.btnAddRestaurant}
       />
     </ScrollView>
   );
 }
 
-function ImageRestaurant({ imageRestaurant }) {
+function ImageRestaurant({ ImageRestaurant }) {
   return (
     <View style={styles.viewPhoto}>
       <Image
         style={{ width: widthScreen, height: 200 }}
         source={
-          imageRestaurant
-            ? { uri: imageRestaurant }
+          ImageRestaurant
+            ? { uri: ImageRestaurant }
             : require("../../../assets/img/Sin foto.png")
         }
       />
@@ -125,12 +107,12 @@ function ImageRestaurant({ imageRestaurant }) {
 
 function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
   const imageSelect = async () => {
-    const response = await loadImageFromGaallery([4, 3]);
-    if (response.status) {
-      toastRef.current.show("No has seleccionado ninguna imagen", 3000);
-      return;
+    const response = await loadImageFromGallery([4, 3])
+    if (!response.status) {
+      toastRef.current.show("No has seleccionado ninguna imagen", 3000)
+      return
     }
-    setImagesSelected([imagesSelected, response.image]);
+    setImagesSelected([imagesSelected, response.image])
   };
 
   const removeImage = (image) => {
@@ -157,53 +139,58 @@ function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
 
   return (
     <ScrollView horizontal style={styles.viewImages}>
-      {size(imagesSelected) < 10 && (
+      {
+      size(imagesSelected) < 10 && (
         <Icon
           type="material-community"
           name="camera"
           color="#00a680"
-          containertStyle={styles.containerIcon}
+          containerStyle={styles.containerIcon}
           onPress={imageSelect}
         />
-      )}
-      {map(imagesSelected, (imageRestaurant, index) => {
+      )
+      }
+      {
+      map(imagesSelected, (ImageRestaurant, index) => {
         <Avatar
           key={index}
           style={styles.minitureStyle}
-          source={{ uri: imageRestaurant }}
-          onPress={() => removeImage(imageRestaurant)}
+          source={{ uri: ImageRestaurant }}
+          onPress={() => removeImage(ImageRestaurant)}
         />;
-      })}
+      })
+      }
     </ScrollView>
   );
 }
 
 function FormAdd({ formData, setFormData, errorName, errorDescription, errorPhone, errorEmail, errorAddress}) {
-  const [country, setCountry] = useState("MX");
-  const [callingCode, setCallingCode] = useState("52");
-  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("MX")
+  const [callingCode, setCallingCode] = useState("52")
+  const [phone, setPhone] = useState("")
 
   const onChange = (e, type) => {
-    setFormData({ formData, [type]: e.nativeEvent.text });
-  };
+    setFormData({ formData, [type] : e.nativeEvent.text });
+  }
+
   return (
     <View style={styles.viewForm}>
       <Input
         placeholder="Nombre del restaurante"
-        defaultValues={formData.name}
+        defaultValue={formData.name}
         onChange={(e) => onChange(e, "name")}
         errorMessage={errorName}
       />
       <Input
         placeholder="Direccion del restaurante"
-        defaultValues={formData.address}
+        defaultValue={formData.address}
         onChange={(e) => onChange(e, "address")}
         errorMessage={errorAddress}
       />
       <Input
         keyboardType="email-address"
         placeholder="Email del restaurante"
-        defaultValues={formData.email}
+        defaultValue={formData.email}
         onChange={(e) => onChange(e, "email")}
         errorMessage={errorEmail}
       />
@@ -213,33 +200,35 @@ function FormAdd({ formData, setFormData, errorName, errorDescription, errorPhon
           withCallingCode
           withFilter
           withCallingCodeButton
-          containertStyle={styles.countryPicker}
+          containerStyle={styles.countryPicker}
           countryCode={country}
           onSelect={(country) => {
             setFormData({
               formData,
-              country: country.cca2,
-              callingCode: country.callingCode[0],
+              'country': country.cca2,
+              'callingCode': country.callingCode[0],
             });
+            setCountry(country.cca2) 
+            setCallingCode(country.callingCode[0])
           }}
         />
         <Input
           placeholder="WhatsApp del restaurante"
           keyboardType="phone-pad"
-          containertStyle={styles.inputPhone}
-          defaultValues={formData.phone}
+          containerStyle={styles.inputPhone}
+          defaultValue={formData.phone}
           onChange={(e) => onChange(e, "phone")}
           errorMessage={errorPhone}
         />
+              </View>
         <Input
           placeholder="Descripcion del restaurante"
           multiline
-          containertStyle={styles.textArea}
-          defaultValues={formData.description}
+          containerStyle={styles.textArea}
+          defaultValue={formData.description}
           onChange={(e) => onChange(e, "description")}
           errorMessage={errorDescription}
         />
-      </View>
     </View>
   );
 }
@@ -252,9 +241,9 @@ const defaulFormValues = () => {
     phone: "",
     address: "",
     country: "MX",
-    callingCode: "52",
-  };
-};
+    callingCode: "52"
+  }
+}
 
 const styles = StyleSheet.create({
   viewContainer: {
