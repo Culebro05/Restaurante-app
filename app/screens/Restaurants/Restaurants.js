@@ -3,7 +3,7 @@ import {StyleSheet, View, Text} from 'react-native'
 import {Icon} from 'react-native-elements'
 import firebase from 'firebase/app'
 
-export default function Restaurants(navigation){
+export default function Restaurants({navigation}){
   const {user, setUser} = useState(null)
 
   useEffect( () => {

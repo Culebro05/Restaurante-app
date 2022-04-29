@@ -16,7 +16,7 @@ export default function RestaurantsStack() {
             <Stack.Screen
                 name='addRestaurants'
                 component={AddRestaurants}
-                options={{ title: 'Agregar restaurantes'}}
+                options={{ title: 'Crear restaurantes'}}
             />
        </Stack.Navigator>
     )

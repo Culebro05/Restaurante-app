@@ -5,8 +5,6 @@ import * as Permissions from 'expo-permissions'
 import * as ImagePicker from 'expo-image-picker'
 import firebase from 'firebase'
 
-
-
 export default function InfoUser(props){
   const {userInfo: {uid, photoURL, displayName, email}, toastRef} = props
 
