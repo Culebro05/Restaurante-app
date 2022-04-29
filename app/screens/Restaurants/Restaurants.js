@@ -4,7 +4,7 @@ import {Icon} from 'react-native-elements'
 import firebase from 'firebase/app'
 
 export default function Restaurants({navigation}){
-  const {user, setUser} = useState(null)
+  const [user, setUser] = useState(null)
 
   useEffect( () => {
     firebase.auth().onAuthStateChanged((userInfo)=>{
@@ -22,7 +22,7 @@ export default function Restaurants({navigation}){
          name='plus'
          color='#00a680'
          containerStyle={styles.btnContainer}
-         onPress={()=> navigation.navigate('addRestaurants')}
+         onPress={()=> navigation.navigate('addrestaurants')}
          />
          )}
        </View>

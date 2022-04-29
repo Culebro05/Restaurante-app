@@ -17,7 +17,7 @@ export default function AddRestaurantsForm({toastRef, setLoading, navigation }) 
   const [errorDescription, setErrorDescription] = useState(null);
   const [imagesSelected, setImagesSelected] = useState([]);
 
-  const AddRestaurant = async () => {
+  const Addrestaurants = async () => {
     console.log(formData)
     console.log("Siiii")
     if (!validForm()) {
@@ -65,7 +65,7 @@ export default function AddRestaurantsForm({toastRef, setLoading, navigation }) 
 
   return (
     <ScrollView style={styles.viewContainer}>
-      <ImageRestaurant ImageRestaurant={imagesSelected[0]} />
+      <Imagerestaurants Imagerestaurants={imagesSelected[0]} />
       <FormAdd
         formData={formData}
         setFormData={setFormData}
@@ -83,21 +83,21 @@ export default function AddRestaurantsForm({toastRef, setLoading, navigation }) 
 
       <Button
         title="Crear restaurante"
-        onPress={AddRestaurant}
-        buttonStyle={styles.btnAddRestaurant}
+        onPress={Addrestaurants}
+        buttonStyle={styles.btnAddrestaurants}
       />
     </ScrollView>
   )
 }
 
-function ImageRestaurant({ ImageRestaurant }) {
+function Imagerestaurants({ Imagerestaurants }) {
   return (
     <View style={styles.viewPhoto}>
       <Image
         style={{ width: widthScreen, height: 200 }}
         source={
-          ImageRestaurant
-            ? { uri: ImageRestaurant }
+          Imagerestaurants
+            ? { uri: Imagerestaurants }
             : require("../../../assets/img/Sin foto.png")
         }
       />
@@ -151,12 +151,12 @@ function UploadImage({ toastRef, imagesSelected, setImagesSelected }) {
       )
       }
       {
-      map(imagesSelected, (ImageRestaurant, index) => {
+      map(imagesSelected, (Imagerestaurants, index) => {
         <Avatar
           key={index}
           style={styles.minitureStyle}
-          source={{ uri: ImageRestaurant }}
-          onPress={() => removeImage(ImageRestaurant)}
+          source={{ uri: Imagerestaurants }}
+          onPress={() => removeImage(Imagerestaurants)}
         />
       })
       }
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   inputPhone: {
     width: "80%",
   },
-  btnAddRestaurant: {
+  btnAddrestaurants: {
     margin: 20,
     backgroundColor: "#442484",
   },

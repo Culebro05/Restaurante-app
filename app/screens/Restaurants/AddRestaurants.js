@@ -18,7 +18,7 @@ export default function AddRestaurants({navigation}) {
               navigation={navigation}
               />
               <Loading isVisible={loading} text="Creando restaurante..."/>
-              <Toast ref={toastRef} position ="center" opacity={0.5}/>
+              <Toast ref={toastRef} position ="top" opacity={0.5}/>
     </KeyboardAwareScrollView>
   )
 }
